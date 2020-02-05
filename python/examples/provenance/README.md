@@ -14,4 +14,8 @@ Test Command
  python -m medifor -s $PWD -t /input  provenance filter $PWD/assets/Koala.jpg
  ```
 
-Modify the mount path for `filtersvc.py` in the `docker-compose.yml` to point to your own images to run additional images through the example (It's a toy example though, so the index is jsut random).
+Modify the mount path for `filtersvc.py` in the `docker-compose.yml` to point to your own images to run additional images through the example (It's a toy example though, so the index is jsut random).   
+
+Please modify the second volume of the filter service in the `docker-compose.yml` file to point to the proper image dataset world folder.
+
+Please Download `index_1.faiss`, `index_2.faiss`, and `index_3.faiss` index example files from: https://drive.google.com/drive/folders/1fm23zXALzrWu-KIFmFdw0PMxnlHxX8a3?usp=sharing

@@ -5,12 +5,13 @@ networks:
 
 services:
   filter_svc:
-    image: mediaforensics/samples:prov-filter-svc
+    image: dmoreira/prov-filter-svc
     restart: always
     ports:
       - 50051:50051
     volumes:
       - "./:/input"
+      - "/data/NC2017_Dev1_Beta4:/data"
     command:
       - "--url=http://faiss1:8080/search"
       - "--url=http://faiss2:8080/search"
@@ -19,34 +20,37 @@ services:
       - mfnet
 
   faiss1:
-    image: mediaforensics/samples:prov-index-svc
+    image: dmoreira/prov-index-svc
     restart: always
     volumes:
       - "./index_svc:/data"
     command:
-      - "--index=/data/index.faiss"
+      - "--index=/data/index_1.faiss"
+      - "--map=/data/index_1.faiss.map.npy"
       - "--port=8080"
     networks:
       - mfnet
 
   faiss2:
-    image: mediaforensics/samples:prov-index-svc
+    image: dmoreira/prov-index-svc
     restart: always
     volumes:
       - "./index_svc:/data"
     command:
-      - "--index=/data/index2.faiss"
+      - "--index=/data/index_2.faiss"
+      - "--map=/data/index_2.faiss.map.npy"
       - "--port=8080"
     networks:
       - mfnet
 
   faiss3:
-    image: mediaforensics/samples:prov-index-svc
+    image: dmoreira/prov-index-svc
     restart: always
     volumes:
       - "./index_svc:/data"
     command:
-      - "--index=/data/index3.faiss"
+      - "--index=/data/index_3.faiss"
+      - "--map=/data/index_3.faiss.map.npy"
       - "--port=8080"
     networks:
       - mfnet
